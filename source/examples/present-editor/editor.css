@@ -1,0 +1,566 @@
+:root{--blue:#2463ed;--ink:#142744;--muted:#647793;--line:#d9e4f4;--pale:#eaf1ff;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#eaf0f8;color:var(--ink);font:14px/1.6 var(--font)}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;background:transparent;border:0}button:focus-visible{outline:2px solid #91caff;outline-offset:3px}button:disabled{opacity:.45;cursor:default}svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.anticon svg{fill:currentColor;stroke:none;width:1em;height:1em}
+.board{position:relative;isolation:isolate;max-width:1560px;min-height:calc(100dvh - 48px);margin:auto;padding:20px 28px 36px;border:1px solid #dfe7f3;border-radius:8px;background:#fdfefe;box-shadow:0 8px 32px #213c6409}.board:before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:0 0 auto;height:250px;border-radius:8px 8px 0 0;background:radial-gradient(ellipse at 12% 0%,#dceaff 0%,#eff5ff 44%,#fdfefe 82%);mask-image:linear-gradient(#000,transparent)}
+.edit-actions{display:flex;justify-content:flex-end;margin-bottom:10px}.save{min-height:36px;background:var(--blue);color:white;border-radius:6px;padding:7px 20px;font-size:13px}.save:hover{background:#4096ff}
+.word-overview{padding:0 0 20px}.word-heading{display:flex;flex-direction:column;align-items:flex-start;gap:22px}.word-title{flex:0 0 auto;min-width:130px}
+.form-field{position:relative;display:flex;flex-direction:column;gap:4px;min-width:0}.field-caption{font-size:12px;color:var(--muted)}.inline-value{display:block;min-width:0;min-height:30px;padding:4px 0;font-size:14px;line-height:22px;white-space:pre-wrap;overflow-wrap:anywhere;cursor:text;border-radius:4px}.inline-value:focus-visible{outline:2px solid #91caff;outline-offset:3px}.inline-value.empty-value{color:#94a3b8}.inline-editor{display:block;width:100%;min-width:0;min-height:32px;padding:5px 8px;border:1px solid #b9cdf0;border-radius:5px;background:white;font-size:14px;line-height:22px;outline:0}.inline-editor:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2463ed12}.inline-editor::placeholder{color:#94a3b8}select.inline-editor{padding-right:22px}textarea.inline-editor{resize:vertical}
+.optional-fields{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px}.optional-fields>.form-field{flex:0 1 auto;max-width:220px}.word-heading>.optional-fields{flex:none;width:100%;gap:10px 12px}.word-heading>.optional-fields>.form-field>.field-caption{display:none}.word-heading>.optional-fields .inline-value{padding:2px 9px;min-height:26px;font-size:12px;line-height:20px;background:#eaf1ff;border:1px solid #d1dff8;color:#2c62bc;border-radius:6px;cursor:pointer}.word-heading>.optional-fields [data-field="words-U"] .inline-value,.word-heading>.optional-fields [data-field="words-T"] .inline-value,.word-heading>.optional-fields [data-field="words-S"] .inline-value{background:#e9f5f0;border-color:#cfe5db;color:#337560}
+.spelling-row{margin-top:20px}.spelling-row>.optional-fields{align-items:stretch}.spelling-row .form-field,.word-forms .form-field{min-width:135px;padding:10px 14px;background:#edf4ff;border:1px solid #dce7f8;border-radius:6px;gap:2px}.spelling-row .inline-value,.word-forms .inline-value{font-weight:600;padding:1px 0;min-height:26px}.word-guidance{margin-top:16px}.word-guidance .form-field{flex-direction:row;align-items:center;gap:8px}.word-guidance .form-field>.field-caption{display:none}.word-guidance .inline-value{font-size:13px}.guidance-module{position:relative;padding-right:18px}.audio-field{display:flex;align-items:center;gap:6px;min-width:0}.audio-name{min-width:0}.audio-name .inline-value{font-size:13px}.play-button{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:28px;height:28px;color:var(--blue);border-radius:5px;padding:5px}.play-button:hover{background:#e7efff}.file-button{display:inline-flex;position:relative;flex-shrink:0;align-items:center;min-height:30px;padding:4px 9px;border:1px solid #d9e4f4;border-radius:5px;font-size:12px;background:white;cursor:pointer;overflow:hidden}.file-button input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.file-button:focus-within{outline:2px solid #91caff;outline-offset:2px}
+.pos-tabs{display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}.pos-tab{position:relative}.pos-tabs [role=tab]{position:relative;display:flex;align-items:baseline;gap:8px;padding:12px 6px;border:0;color:#647793;background:transparent}.pos-tabs [role=tab].active{color:var(--blue)}.pos-tabs [role=tab].active:after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--blue)}.pos-abbr{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:700;font-size:19px}.pos-count{font-size:11px;border-radius:4px;background:#edf2fa;padding:0 5px;color:#7b8da6}.active .pos-count{background:#eaf1ff;color:var(--blue)}
+.editor-columns{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:26px;padding-top:24px;min-height:480px}.meanings-pane{min-width:0}.position-pane{min-width:0;border-left:1px solid var(--line);padding-left:24px}.pronunciation-block{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;padding:7px 10px;background:#f5f8ff;border:1px solid #e1e9f8;border-radius:6px;margin-bottom:12px}.pronunciation-block>.ipa-field{flex-direction:row;align-items:baseline;flex:1;gap:10px;min-width:0}.ipa-field>.field-caption{font-size:12px;flex-shrink:0}.ipa-field>.inline-value{font-size:14px;min-height:26px;padding:0}.ipa-field>.inline-editor{min-width:100px}.compact-audio{display:flex;flex:none;align-items:center;gap:4px}.compact-audio .file-button{display:inline-flex;margin-left:0}.position-levels{margin:20px 0}.position-levels .optional-fields{align-items:flex-start;gap:10px}.position-levels .form-field{max-width:110px}.position-levels .inline-value{display:inline-block;width:fit-content;background:#eaf1ff;color:#2c62bc;padding:2px 8px;font-size:12px;min-height:26px;cursor:pointer}.check-field{display:flex;align-items:center;gap:8px;font-size:13px;margin:18px 0}.check-field input{accent-color:var(--blue);width:16px;height:16px}.word-forms .optional-fields{display:flex;flex-direction:column;align-items:stretch;gap:12px}.word-forms .optional-fields>.form-field{max-width:none}.word-forms .add-host{align-self:flex-start}.position-pane>.optional-fields{margin-top:16px}
+.sense-section{position:relative;border-bottom:1px solid #eaf0f7;padding:0 18px 10px 58px;margin-bottom:12px;min-height:44px}.meaning-controls{position:absolute;left:0;top:3px;display:flex;align-items:center;gap:5px}.meaning-fields{display:flex;align-items:baseline;flex-wrap:nowrap;gap:10px}.meaning-fields>.form-field{flex:0 0 auto;max-width:105px}.meaning-fields>.meaning-text{flex:1;max-width:none;min-width:0}.meaning-fields>.form-field>.field-caption,.english-meaning>.field-caption{display:none}.compact-field .inline-value{font-family:var(--font);font-style:normal;color:#63748b;font-size:14px}.compact-field:has(select){width:72px}.register-field:has(select){width:105px}.register-field .inline-value{font-size:12px;color:#76869b}.meaning-text .inline-value{font-size:16px;line-height:1.6;font-weight:600;color:#203553}.english-meaning .inline-value{color:var(--blue);font-style:italic;font-size:13px;padding-top:0}.sense-section>.optional-fields{margin-top:6px;gap:8px 16px}.sense-section>.optional-fields>.form-field{flex-direction:row;align-items:baseline;gap:6px;max-width:none}.sense-section>.optional-fields .inline-value{font-size:13px;min-height:26px;padding:2px 0}.sort-ghost{opacity:.3;background:#edf4ff}.sort-chosen{background:#f6f9ff}
+.component-host{display:inline-flex;vertical-align:middle;flex-shrink:0}.component-host .unified-add.ant-btn{height:22px;min-width:22px;padding:0 7px;border:1px solid #cbdcf7;color:var(--blue);background:#fff;border-radius:6px;box-shadow:none;font-size:13px}.component-host .unified-add.ant-btn:has(> .ant-btn-icon:only-child){padding:0;width:22px}.component-host .unified-add.ant-btn:hover{background:#eaf1ff;border-color:#91baff;color:var(--blue)}.component-host .meaning-drag-handle.ant-btn{width:18px;height:26px;padding:0;color:#94a3b8;cursor:grab;touch-action:none}.component-host .meaning-drag-handle.ant-btn:active{cursor:grabbing}.component-host .frequency-number.ant-btn{width:24px;min-width:24px;height:24px;line-height:24px;padding:0;border:0;border-radius:50%;box-shadow:none;color:#fff;font-size:12px}.component-host .frequency-number.high.ant-btn{background:#6b6d70}.component-host .frequency-number.low.ant-btn{background:#a8aaad}.component-host .frequency-number.ant-btn:hover{color:#fff;filter:brightness(.95)}.present-options-menu .ant-dropdown-menu{max-height:360px;overflow:auto;min-width:170px}.present-options-menu .ant-dropdown-menu-item{font-size:13px}
+.removable{position:relative}.remove-host{position:absolute;top:-8px;right:-9px;z-index:3;visibility:hidden;opacity:0;pointer-events:none}.removable:hover>.remove-host,.removable:focus-within>.remove-host{visibility:visible;opacity:1;pointer-events:auto}.component-host .remove-module.ant-btn{display:flex;align-items:center;justify-content:center;width:18px;height:18px;padding:0;border:1px solid #dce4ee;border-radius:50%;background:#fff;color:#8794a6;font-size:10px}.component-host .remove-module.ant-btn:hover{color:#d34b4b;background:#fff2f0;border-color:#ffd1ca}.sense-section>.remove-host{top:6px;right:0}.example-item>.remove-host,.chunk-node>.remove-host{right:0;top:2px}.pos-tab>.remove-host{top:1px;right:-7px}
+.example-item{position:relative;padding:14px 0;margin-top:14px;border-bottom:1px solid var(--line)}.example-item>.form-field:first-of-type{padding-right:34px}.example-item>.form-field>span:first-child:not(.inline-value){display:none}.example-item>.play-button{position:absolute;right:0;top:14px}.translation{margin-top:2px}.translation .inline-value{font-size:13px;color:#536783}.source-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#f0f4fa;padding:8px 12px;border-radius:6px;margin-top:10px}.source-row>.form-field{flex-direction:row;align-items:baseline;gap:6px}.source-row>.form-field>span:first-child:not(.inline-value){font-size:12px;color:var(--muted);flex-shrink:0}.source-row .inline-value{padding:0;min-height:22px;font-size:13px}.gift-picture{display:block;padding:0;margin-top:12px;width:140px;border:0;background:none}.gift-picture img{display:block;width:100%;border-radius:6px}.chunk-node{margin:16px 0 0 12px;padding:0 18px 12px 16px;border-left:2px solid #d9e4f4}.chunk-title{font-size:14px;font-weight:600}.chunk-title span{font-weight:400;color:var(--muted)}.chunk-picker{padding-top:12px}.chunk-picker input{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:6px}.chunk-results{max-height:240px;overflow:auto}.chunk-results button{display:block;width:100%;text-align:left;border-bottom:1px solid var(--line);padding:10px;font-size:13px}
+.hidden,[hidden]{display:none!important}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:90vw;background:#203959;color:white;border-radius:6px;padding:10px 16px;font-size:13px;z-index:2000}.gift-dialog{position:fixed;width:min(900px,90vw);border:0;border-radius:8px;padding:40px 16px 16px;max-height:90vh}.gift-dialog::backdrop{background:#16263e88}.gift-dialog img{display:block;max-width:100%;max-height:75vh;object-fit:contain;margin:auto}.gift-dialog #closeGift{position:absolute;right:10px;top:5px;width:30px;height:30px;font-size:24px}
+@media(max-width:1100px){.editor-columns{grid-template-columns:minmax(0,1fr) 260px;gap:20px}.position-pane{padding-left:20px}.meaning-fields{gap:8px}}
+@media(max-width:800px){body{padding:12px}.board{padding:16px;min-height:calc(100dvh - 24px)}.editor-columns{grid-template-columns:1fr}.position-pane{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}.word-title{min-width:140px}.word-forms .optional-fields{display:grid;grid-template-columns:1fr 1fr}.pos-tabs{flex-wrap:wrap}}
+@media(max-width:440px){.board{padding:14px}.sense-section{padding-left:52px}.meaning-fields{gap:6px}.meaning-text .inline-value{font-size:14px}.compact-field:has(select){width:62px}.register-field:has(select){width:86px}.source-row{grid-template-columns:1fr}.pos-tabs{gap:18px}.word-forms .optional-fields{grid-template-columns:1fr}}
+@media(hover:none){.remove-host{visibility:visible;opacity:1;pointer-events:auto}}
+.pronunciations>.optional-fields{display:flex;flex-direction:column;align-items:stretch;gap:12px}.pronunciations .pronunciation-block{margin-bottom:0}.pronunciations .add-host{align-self:flex-start}.word-forms .check-field{margin:0}.spelling-row .add-host{align-self:center}
+
+.word-title>.inline-value{display:inline-block;font-size:72px;font-weight:750;line-height:1.08;letter-spacing:1px;padding:0;min-height:0;color:var(--ink);border:0;border-radius:0;background:linear-gradient(transparent 85%,#a4dcf7 85%,#a4dcf7 95%,transparent 95%)}
+.word-title>.inline-editor{font-size:72px;font-weight:750;max-width:650px;line-height:1.08;height:1.2em}
+
+/* Full-page word detail surface; menu metrics reuse lc-selection-menu. */
+body{padding:0;min-height:100dvh;background:linear-gradient(to bottom,transparent 0%,#ffffff 100%),radial-gradient(ellipse 1200px 310px at 12% 0%,#b9e3fc 0%,#dff2ff 44%,#ffffff 100%);background-size:100% 280px;background-repeat:no-repeat;background-color:#ffffff}
+.board{max-width:none;min-height:100dvh;margin:0;padding:24px 52px 36px;border:0;border-radius:0;background:transparent;box-shadow:none}
+.board:before{display:none}
+.word-title{max-width:100%}.word-title>.inline-value{overflow-wrap:anywhere}
+.meaning-fields>.meaning-text{flex:0 1 auto}.meaning-fields>.add-host{align-self:center}
+.optional-fields:empty{display:none}.position-levels .field-caption{display:none}
+.static-tag{cursor:default!important}.word-syllables{margin-top:8px}.word-syllables .field-caption{display:none}
+.present-options-menu .ant-dropdown-menu{width:224px;padding:6px;border:1px solid #e3e9f0;border-radius:8px;background:#fff;box-shadow:0 6px 24px #102a431f}
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item{padding:8px 10px;border-radius:4px;color:var(--blue);font-size:13px;line-height:1.6}
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item:hover,.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item-selected{background:#eff6ff;color:#1677ff}
+.present-select-host{display:block;min-width:76px;width:100%}.present-select-host .ant-select{width:100%;font-size:13px}.present-select-menu .ant-select-item{font-size:13px;border-radius:4px;padding:8px 10px}.present-select-menu{padding:6px;border:1px solid #e3e9f0;border-radius:8px;box-shadow:0 6px 24px #102a431f}
+@media(max-width:1400px){.word-title>.inline-value,.word-title>.inline-editor{font-size:64px}}
+@media(min-width:1800px){.word-title>.inline-value,.word-title>.inline-editor{font-size:88px}}
+@media(max-width:800px){.board{padding:20px}.word-title>.inline-value,.word-title>.inline-editor{font-size:56px;letter-spacing:1px}}
+@media(max-width:440px){.board{padding:14px}.word-title>.inline-value,.word-title>.inline-editor{font-size:48px}}
+.word-guidance .static-tag,.word-heading [data-field="words-F"] .static-tag{padding:2px 10px;min-height:26px;font-size:12px;line-height:20px;background:#eaf1ff;border:1px solid #d1dff8;color:#2c62bc;border-radius:999px}
+
+.meaning-text .inline-value.empty-value{color:#a8b2c1;font-weight:400}
+
+.component-host .frequency-number.unset.ant-btn{background:transparent;color:#647793;border:1px solid #cbd5e1}
+
+/* Word-level spelling attributes share the right-column alignment. */
+.word-overview{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:26px;align-items:start}
+.word-summary{min-width:0}
+.word-overview>.spelling-row{margin-top:0;padding-left:24px;min-width:0}
+.spelling-row>.optional-fields{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.spelling-row .optional-fields>.form-field{display:flex;flex-direction:row;align-items:center;gap:10px;max-width:none;min-width:0;padding:8px 12px}
+.spelling-row .field-caption{flex:0 0 52px;line-height:22px}
+.spelling-row .inline-value,.spelling-row .inline-editor,.spelling-row .present-select-host{flex:1;min-width:0}
+.spelling-row .add-host{align-self:flex-start}
+@media(max-width:1100px){.word-overview{grid-template-columns:minmax(0,1fr) 260px;gap:20px}.word-overview>.spelling-row{padding-left:20px}}
+@media(max-width:800px){.word-overview{grid-template-columns:1fr;gap:20px}.word-overview>.spelling-row{padding-left:0}}
+
+.word-title>.inline-editor{letter-spacing:1px}
+.meaning-fields{flex-wrap:wrap}.meaning-fields>.english-meaning{flex:0 1 auto;max-width:100%;min-width:0}.meaning-fields>.english-meaning .inline-value{padding:4px 0}
+
+.word-forms .optional-fields{gap:8px}
+.word-forms .optional-fields>.form-field{flex-direction:row;align-items:center;gap:10px;min-width:0;padding:8px 12px}
+.word-forms .field-caption{flex:0 0 78px;white-space:nowrap;line-height:22px}
+.word-forms .inline-value,.word-forms .inline-editor{flex:1;min-width:0}
+
+.word-title-row{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap;max-width:100%}
+.word-title-row .word-syllables{margin:0;min-width:0}
+.word-syllables .form-field{flex-direction:row;align-items:baseline;gap:0;max-width:none}
+.word-syllables .field-caption{display:block;white-space:nowrap;font-size:13px}
+.word-syllables .inline-value{font-size:13px}
+.word-heading [data-field="words-personTag"] .static-tag,.word-heading [data-field="words-placeTag"] .static-tag{border-radius:999px}
+
+.spelling-columns{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start}
+.spelling-columns>.optional-fields{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0}
+.spelling-columns.two-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
+.spelling-columns.two-columns>.spelling-primary{grid-column:2;grid-row:1}
+.spelling-columns.two-columns>.spelling-overflow{grid-column:1;grid-row:1}
+.word-overview:has(.spelling-columns.two-columns){grid-template-columns:minmax(0,1fr) 548px}
+@media(max-width:1100px){.word-overview:has(.spelling-columns.two-columns){grid-template-columns:minmax(0,1fr) 512px}}
+@media(max-width:800px){.word-overview:has(.spelling-columns.two-columns){grid-template-columns:1fr}}
+@media(max-width:440px){.spelling-columns.two-columns{grid-template-columns:1fr}.spelling-columns.two-columns>.spelling-primary{grid-column:1;grid-row:1}.spelling-columns.two-columns>.spelling-overflow{grid-column:1;grid-row:2}}
+
+.word-heading>.word-guidance{margin:0;width:100%;min-width:0}
+.word-guidance>.optional-fields{flex-wrap:nowrap;gap:12px;align-items:center}
+.word-guidance .guidance-module{min-width:0}.word-guidance .audio-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:600px){.word-guidance>.optional-fields{flex-wrap:wrap}}
+
+.grouped-options-menu .ant-dropdown-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:6px 12px;width:460px;max-width:calc(100vw - 32px);max-height:min(520px,70vh);padding:10px}
+.grouped-options-menu .ant-dropdown-menu-item-group-title{padding:5px 10px;color:#647793;font-size:12px;font-weight:600}
+.grouped-options-menu .ant-dropdown-menu-item-group-list{margin:0}
+@media(max-width:520px){.grouped-options-menu .ant-dropdown-menu{grid-template-columns:1fr;width:260px}}
+
+
+/* Existing, unfilled fields stay visible as red cards until completed. */
+.board .unfilled-card{background:#fff7e6!important;border-radius:6px;box-shadow:inset 0 0 0 1px #f4c46a}
+.board .unfilled-card:not(.pronunciation-block):not(.word-title):not(.form-field){padding:4px 8px}
+.board .unfilled-card>.inline-value{background:transparent!important}
+.board .form-field.unfilled-card:not(.spelling-row .form-field):not(.word-forms .form-field){padding:2px 8px}
+.board .frequency-number.unset.ant-btn{background:#fff7e6;border-color:#f4c46a}
+
+.pos-tab{display:flex;align-items:center}.pos-tabs [role=tab]{cursor:grab}.pos-tabs [role=tab]:active{cursor:grabbing}
+
+/* C: shared card surfaces, unboxed rows and grouped verb forms. */
+.position-pane{border-left:0;padding-left:16px}
+.position-card{padding:16px;background:rgba(255,255,255,.88);border:1px solid rgba(222,231,244,.7);border-radius:12px;box-shadow:0 3px 12px #20395908,0 1px 3px #20395905}
+.position-card+.position-card{margin-top:12px}
+.pronunciation-card .pronunciation-block{padding:0;min-height:32px;margin:0;background:transparent;border:0;border-radius:0}
+.pronunciation-card .position-levels{margin:10px 0 0}
+.pronunciation-card .position-levels .optional-fields{gap:8px}
+.irregular-row{margin-top:12px}
+.irregular-row .check-field{margin:0;font-size:12px;color:var(--muted)}
+.irregular-row input{margin:0;width:14px;height:14px}
+.form-group+.form-group{margin-top:10px;padding-top:10px;border-top:1px solid #e9eef6}
+.form-group-title{font-size:12px;line-height:20px;font-weight:600;color:#526680;margin-bottom:4px}
+.word-forms .optional-fields{display:flex;flex-direction:column;gap:4px}
+.word-forms .optional-fields>.form-field{padding:0;min-height:28px;border:0;background:transparent;gap:8px;border-radius:0}
+.word-forms .field-caption{flex-basis:78px;font-size:12px;color:#7b8ba1}
+.word-forms .inline-value{font-size:14px;font-weight:500;line-height:22px}
+.spelling-row .form-field{background:transparent;border-color:transparent;padding:4px 10px}
+.board .word-forms .unfilled-card,.board .spelling-row .unfilled-card,.board .pronunciation-card .unfilled-card{background:transparent!important;box-shadow:none}
+.board .word-forms .unfilled-card>.inline-value,.board .spelling-row .unfilled-card>.inline-value,.board .pronunciation-card .unfilled-card .empty-value{background:#fff7e6!important;box-shadow:inset 0 0 0 1px #f4c46a;color:#b96d0b;border-radius:5px;padding:2px 7px;font-weight:400}
+.word-heading>.optional-fields .static-tag:before{content:'';display:inline-block;width:5px;height:5px;margin-right:6px;border-radius:50%;background:currentColor;vertical-align:2px;opacity:.7}
+@media(max-width:800px){.position-pane{padding:20px 0 0}.position-card{max-width:420px}.word-forms .optional-fields{display:flex}}
+.meaning-fields .relation-field{flex-direction:row;align-items:baseline;gap:5px}
+.meaning-fields .relation-field>.field-caption{display:inline-block;color:#6b83a4;font-size:12px}
+.meaning-fields .relation-field>.inline-value{font-size:13px;color:#42658d}
+.meaning-fields .relation-field{border:1px solid var(--blue);border-radius:3px;gap:0;align-items:stretch;max-width:100%;background:transparent}
+.meaning-fields .relation-field>.field-caption{display:flex;align-items:center;padding:2px 5px;background:var(--blue);color:white;flex-shrink:0;font-size:12px;border-radius:2px 0 0 2px}
+.meaning-fields .relation-field>.inline-value{padding:2px 7px;min-height:24px;color:var(--blue);line-height:20px}
+.meaning-fields .relation-field>.inline-editor{min-width:70px;max-width:220px}
+.sense-section.has-meaning-image{padding-right:86px;min-height:86px}
+.meaning-image{position:absolute;right:8px;top:4px;width:64px}
+.meaning-thumbnail{display:block;width:64px;height:52px;padding:0;border:1px solid #dce7f8;border-radius:5px;overflow:hidden;background:white}
+.meaning-thumbnail img{display:block;width:100%;height:100%;object-fit:contain}
+.image-replace{display:block;margin:2px auto 0;font-size:11px;color:var(--blue);padding:0 4px}
+.image-dialog-close{position:absolute;right:10px;top:5px;width:30px;height:30px;font-size:24px}
+.usage-cluster{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:2px;max-width:100%}
+.usage-cluster:empty{display:none}
+.usage-cluster .inline-value{font-size:13px;line-height:22px;font-weight:400;color:#657992;padding:3px 0;min-height:28px;font-style:normal}
+.meaning-text .inline-value{font-size:17px;font-weight:700}
+.meaning-text .inline-value.empty-value{font-weight:400}
+.sense-section>.optional-fields{gap:6px 8px;margin-top:6px}
+.sense-section>.optional-fields>.secondary-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6f4;background:#f4f7fc;border-radius:4px;padding:1px 7px}
+.secondary-tag>.field-caption{font-size:11px;color:#7a8ca6}
+.sense-section>.optional-fields>.secondary-tag>.inline-value{font-size:12px;line-height:20px;min-height:22px;padding:0;color:#395d8b}
+.secondary-tag[data-field="meanings-dialect"]>.field-caption{display:none}
+.sense-section>.optional-fields>.secondary-tag[data-field="meanings-dialect"]{background:#eaf1ff;border-color:#ccdbf6}
+/* Usage is a continuous sequence of values, never field captions. */
+.usage-cluster .field-caption{display:none}
+.usage-cluster{gap:0}
+.usage-cluster .inline-value{padding-left:0;padding-right:0}
+.sense-section>.optional-fields>.secondary-tag[data-field="meanings-dialect"]{background:#f4f7fc;border-color:#dce6f4}
+.word-forms>.irregular-row{margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e9eef6}
+.word-forms>.irregular-row>.form-field{padding:0;border:0;background:transparent;min-width:0}
+.usage-cluster .dialect-inline{border:0;background:transparent;padding:0;gap:0}
+.usage-cluster .dialect-inline>.inline-value{color:#657992;font-size:13px;font-weight:400}
+
+/* Compact dictionary annotations and editable component dropdown. */
+.board .usage-cluster .form-field,.board .usage-cluster .inline-value{margin:0;padding:0;gap:0;min-height:22px}
+.usage-autocomplete{min-width:180px}
+.relation-field .inline-value,.secondary-tag .inline-value{letter-spacing:0;word-spacing:0;text-align:left}
+.meaning-image .image-replace{opacity:0;pointer-events:none}
+.meaning-image:hover .image-replace,.meaning-image:focus-within .image-replace{opacity:1;pointer-events:auto}
+.meaning-chunk-pair{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:8px}
+.meaning-chunk-pair .field-caption{display:none}
+.chunk-english .inline-value{color:var(--blue);font-style:italic}
+/* Same compact blue + buttons as the listening-scene directory editor. */
+.meaning-insert-actions{display:flex;gap:8px;align-items:center;margin-top:12px}
+.meaning-insert-actions .ant-btn{height:24px;padding:0 8px;border-radius:4px;border-color:#1677ff;background:#1677ff;color:#fff;font-size:12px;box-shadow:none}
+.meaning-insert-actions .ant-btn:hover{background:#0958d9!important;border-color:#0958d9!important;color:#fff!important}
+@media(hover:none){.meaning-image .image-replace{opacity:1;pointer-events:auto}}
+
+.word-guidance .form-field[data-field="words-listeningNote"]{flex:1 1 180px;min-width:0;max-width:none;align-items:baseline}
+.word-guidance [data-field="words-listeningNote"]>.field-caption{display:inline;flex-shrink:0;font-size:12px;color:#657992}
+.word-guidance [data-field="words-listeningNote"]>.inline-value,.word-guidance [data-field="words-listeningNote"]>.inline-editor{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* Dictionary annotations use a single inline text flow, not separate flex boxes.
+   Half-width brackets are normalized for display only in displayValue(). */
+.board .usage-cluster{display:block;font:400 13px/22px var(--font);color:#657992;letter-spacing:0;word-spacing:0}
+.board .usage-cluster>.form-field{display:inline;vertical-align:baseline;margin:0;padding:0;border:0;min-height:0;width:auto}
+.board .usage-cluster>.form-field>.inline-value{display:inline;vertical-align:baseline;font:inherit;color:inherit;line-height:inherit;letter-spacing:inherit;word-spacing:inherit;white-space:pre-wrap;margin:0;padding:0;min-height:0}
+.board .usage-cluster .present-select-host{display:inline-block;vertical-align:baseline;width:auto}
+.board .usage-cluster .inline-editor[hidden]{display:none}
+
+/* Reserve separate slots for sense deletion and the optional image controls. */
+.sense-section{padding-right:36px}
+.sense-section.has-meaning-image{padding-right:120px}
+.sense-section>.meaning-delete-host{top:3px;right:0}
+.meaning-delete-host.component-host .remove-module.ant-btn{width:26px;height:26px;border:0;border-radius:4px;background:transparent;font-size:15px}
+.sense-section>.meaning-image{right:44px}
+
+.meaning-menu-panel{background:#fff;border:1px solid #e1e9f4;border-radius:8px;box-shadow:0 6px 24px #102a431f;overflow:hidden}
+.meaning-mode-toggle{padding:10px 10px 8px;border-bottom:1px solid #edf1f7}
+.meaning-mode-toggle .ant-segmented{font-size:13px}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu{box-shadow:none;border:0}
+/* Clearly distinguish the active definition mode. */
+.meaning-mode-toggle .ant-segmented{background:#edf2f8;color:#526680}
+.meaning-mode-toggle .ant-segmented-item-selected,.meaning-mode-toggle .ant-segmented-thumb{background:#2463ed;color:#fff;box-shadow:none}
+.meaning-mode-toggle .ant-segmented-item-selected .ant-segmented-item-label{color:#fff;font-weight:600}
+.meaning-mode-toggle .ant-segmented-item-selected:hover:not(.ant-segmented-item-disabled){color:#fff}
+
+/* Separate addition groups with a simple cross, without card outlines. */
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-root{gap:0;padding:10px;align-items:stretch;background:#fff;max-height:min(440px,60vh)}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group{min-width:0;border:0;border-radius:0;background:transparent;padding:8px 10px}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group-title{margin:0 4px 4px;padding:5px 2px 7px;border-bottom:0;color:#526680;font-size:12px;font-weight:600;line-height:18px}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group-list{margin:0}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item{min-height:30px;padding:5px 8px;font-size:13px;line-height:20px;border-radius:4px}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item:hover{background:#edf4ff}
+
+.meaning-menu-panel{border:0;border-radius:0}
+.meaning-mode-toggle{border-bottom:0}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group:nth-child(even){border-left:1px solid #e6ebf2}
+.grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group:nth-child(n+3){border-top:1px solid #e6ebf2}
+@media(max-width:520px){
+ .grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group:nth-child(even){border-left:0}
+ .grouped-options-menu .meaning-menu-panel .ant-dropdown-menu-item-group+.ant-dropdown-menu-item-group{border-top:1px solid #e6ebf2}
+}
+
+/* Consistent curriculum badges: primary green, junior teal, senior blue. */
+.word-heading>.optional-fields .static-tag:before{content:none;display:none}
+.word-heading>.optional-fields [data-field="words-U"] .inline-value{background:#edf7ee;border-color:#cee5d1;color:#347249}
+.word-heading>.optional-fields [data-field="words-T"] .inline-value{background:#eaf7f7;border-color:#c8e6e5;color:#237b80}
+.word-heading>.optional-fields [data-field="words-S"] .inline-value{background:#edf3ff;border-color:#ccdbfa;color:#315fb5}
+.word-heading>.optional-fields :is([data-field="words-U"],[data-field="words-T"],[data-field="words-S"]) .inline-value{border-radius:6px;padding:2px 9px;min-height:26px;font-size:12px;line-height:20px;font-weight:400}
+.present-select-host .ant-select{max-width:calc(100vw - 64px)}
+.present-select-host .ant-select-single .ant-select-selector{height:auto!important;min-height:32px}
+.present-select-host .ant-select-single .ant-select-selection-item{white-space:normal;overflow-wrap:anywhere;line-height:22px;padding-top:4px;padding-bottom:4px;text-overflow:clip}
+.present-select-menu .ant-select-item-option-content{white-space:normal;overflow-wrap:anywhere;text-overflow:clip}
+
+.audio-chooser{width:480px;max-width:calc(100vw - 32px);max-height:80vh;padding:20px;border:1px solid #dce5f2;border-radius:8px;color:var(--ink);box-shadow:0 12px 40px #14274426}
+.audio-chooser::backdrop{background:#14274433}
+.audio-chooser-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px}
+.audio-chooser-heading button{font-size:24px;line-height:24px}
+.audio-chooser h3{font-size:13px;color:#657992;margin:20px 0 8px}
+.audio-choices{max-height:45vh;overflow:auto}
+.audio-choice{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #edf1f7}
+.audio-choice>div{flex:1;min-width:0}.audio-choice strong,.audio-choice span,.audio-choice small{display:block;overflow-wrap:anywhere}.audio-choice strong{font-size:13px}.audio-choice span,.audio-choice small{font-size:12px;color:#657992}
+.audio-choice button,.audio-upload-option button{color:var(--blue);white-space:nowrap}.audio-choice button:disabled{color:#94a3b8}
+.audio-upload-option{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:18px}.audio-upload-option button{border:1px solid #c5d7f5;border-radius:4px;padding:5px 10px}.audio-upload-option span,.audio-empty{font-size:12px;color:#657992}
+
+.audio-chooser{width:720px}
+.audio-choices{margin-top:16px;overflow:auto}
+.word-audio-table{width:100%;border-collapse:collapse;font-size:13px;text-align:left}
+.word-audio-table th{background:#f4f7fb;color:#657992;font-weight:500;white-space:nowrap}
+.word-audio-table th,.word-audio-table td{padding:10px 12px;border-bottom:1px solid #e8edf5;vertical-align:middle}
+.word-audio-table td:nth-child(3){min-width:120px}.word-audio-table td:nth-child(4){overflow-wrap:anywhere;max-width:260px}
+.word-audio-table button{color:var(--blue);white-space:nowrap;padding:2px 6px}.word-audio-table button:disabled{color:#94a3b8}
+.word-audio-table small{display:block;color:#8794a6;font-size:11px;margin-top:3px}.word-audio-table .current-audio{background:#f7faff}
+
+.word-audio-table [data-reuse-audio]{min-width:64px;padding:5px 12px;border:1px solid #2463ed;border-radius:4px;background:#2463ed;color:#fff}
+.word-audio-table [data-reuse-audio]:hover:not(:disabled){background:#1854d6}
+.word-audio-table [data-reuse-audio]:disabled{background:#f0f3f7;border-color:#dce3ec;color:#94a3b8;opacity:1}
+.word-audio-table .current-audio{background:#eaf2ff}
+.word-audio-table .current-audio td:first-child{box-shadow:inset 3px 0 #2463ed}
+.word-audio-table .current-audio [data-reuse-audio]:disabled{background:#dceaff;border-color:#b7d1ff;color:#245fc3;font-weight:600}
+
+/* 单词标签添加按钮：保持原尺寸，使用圆形。 */
+.word-heading .component-host .unified-add.ant-btn[aria-label="添加单词标签"]{width:22px;height:22px;min-width:22px;padding:0;border-radius:50%}
+#catalogBack{margin-right:auto;font-size:14px;padding:8px 14px;border:1px solid #dce5f3;border-radius:6px;background:white}.chunk-overview .word-title{max-width:100%}.chunk-overview .word-input{white-space:normal;overflow-wrap:anywhere}.chunk-editor{grid-template-columns:minmax(0,1fr)!important}.chunk-type{margin-top:16px}.chunk-overview{display:block!important}
+
+/* 词块类型与名称同行，复用词频标签的蓝色样式。 */
+.chunk-overview .chunk-title-row{flex-direction:row;align-items:baseline;gap:22px;flex-wrap:wrap}
+.chunk-overview .word-title{flex:0 1 auto;min-width:0}
+.chunk-overview .chunk-type{margin:0;flex:none}
+.chunk-type .chunk-type-tag{padding:2px 9px;min-height:26px;font-size:12px;line-height:20px;background:#eaf1ff;border:1px solid #d1dff8;color:#2c62bc;border-radius:6px;cursor:pointer;white-space:nowrap}
+.edit-actions:has(#catalogBack){align-items:center;gap:16px;padding:0;width:100%}
+.edit-actions #catalogBack,.edit-actions:has(#catalogBack) .save{height:40px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;line-height:22px;margin-top:0;margin-bottom:0}
+
+/* 属性区与顶栏分开，收紧六项属性的纵向节奏。 */
+.word-overview>.spelling-row{margin-top:22px}
+.spelling-columns>.optional-fields{gap:2px}
+.spelling-columns .form-field{padding-top:1px;padding-bottom:1px}
+.read-only .inline-value{cursor:default}
+.read-only .unfilled-card .inline-value.empty-value{background:transparent!important;box-shadow:none!important;color:#b96d0b}
+
+/* 返回与保存同置右上角，左侧标题利用顶栏空间。 */
+.edit-actions #catalogBack{margin-right:0}
+
+/* 紧凑三行属性：覆盖旧的高优先级字段padding，避免行高仍被撑开。 */
+.word-overview{padding-bottom:8px}
+.spelling-row .spelling-columns>.optional-fields{gap:2px}
+.spelling-row .spelling-columns>.optional-fields>.form-field{padding:0 10px;min-height:26px;border:0;gap:10px}
+.spelling-row .spelling-columns .inline-value{min-height:26px;line-height:22px}
+
+/* 所有添加入口使用同尺寸圆形加号；带文字入口的文字置于圆圈外。 */
+.component-host .unified-add.ant-btn{border-radius:50%;width:22px;min-width:22px;height:22px;padding:0}
+.component-host .unified-add.ant-btn:has(> .ant-btn-icon + span){width:auto;padding:0;border:0;border-radius:0;background:transparent;gap:8px}
+.component-host .unified-add.ant-btn:has(> .ant-btn-icon + span)>.ant-btn-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:0 0 22px;margin:0;border:1px solid #cbdcf7;border-radius:50%;background:#fff}
+.component-host .unified-add.ant-btn:has(> .ant-btn-icon + span):hover>.ant-btn-icon{background:#eaf1ff;border-color:#91baff}
+
+/* 属性添加按钮与最后一项同行，空属性时仍可添加。 */
+.spelling-row .spelling-columns>.spelling-with-add{display:grid;grid-template-columns:minmax(0,1fr) 22px;column-gap:8px;align-items:center}
+.spelling-with-add>.form-field{grid-column:1}
+.spelling-with-add>.form-field:has(+ .component-host){grid-column:1}
+.spelling-row .spelling-with-add>.component-host{grid-column:2;grid-row:var(--spelling-add-row);align-self:center}
+
+.catalog-edit-meta{margin-right:auto;display:flex;align-items:center;flex-wrap:wrap;gap:4px 18px;color:var(--muted);font-size:12px;line-height:20px}
+.edit-actions:has(.catalog-edit-meta){flex-wrap:wrap}
+@media(max-width:600px){.catalog-edit-meta{flex-basis:100%}.edit-actions #catalogBack{margin-left:auto}}
+
+/* 释义及词性属性区使用白底，短词块页面也不受顶部渐变影响。 */
+.editor-columns{background:#ffffff}
+
+/* 标签紧靠内容，列内仍统一对齐；加号使用组件自带的对称图标。 */
+.spelling-row .spelling-columns>.optional-fields>.form-field{gap:4px;padding-left:0;padding-right:0}
+.spelling-row .field-caption{flex-basis:48px;text-align:right}
+.component-host .unified-add.ant-btn .anticon{font-size:12px;line-height:1}
+.component-host .unified-add.ant-btn .anticon svg{width:12px;height:12px}
+
+/* 待填写统一橙黄色，与错误提示区分。 */
+.board .inline-value.empty-value,.board .unfilled-card>.inline-value,.board .unfilled-card .empty-value{color:#b96d0b}
+.board .inline-editor::placeholder,.board .unfilled-card .ant-select-selection-placeholder{color:#b96d0b;opacity:1}
+
+.word-guidance [data-field="words-listeningTag"] .inline-value{white-space:nowrap;min-width:max-content;padding:2px 10px;background:#eaf1ff;border:1px solid #d1dff8;color:#2c62bc;border-radius:999px;font-size:12px;line-height:20px;min-height:26px}
+
+.guidance-audio-name{padding:0;border:0;background:transparent;font-size:13px;text-align:left;overflow-wrap:anywhere}
+.guidance-audio-name.empty-value{color:#b96d0b}
+.guidance-audio-name:disabled{opacity:1;cursor:default}
+.guidance-audio-search{width:100%;margin-top:16px;padding:8px 10px;border:1px solid #dce5f2;border-radius:5px}
+.word-overview:has(.spelling-columns.two-columns){grid-template-columns:minmax(0,1fr) 476px}
+@media(max-width:1100px){.word-overview:has(.spelling-columns.two-columns){grid-template-columns:minmax(0,1fr) 452px}}
+@media(max-width:800px){.word-overview:has(.spelling-columns.two-columns){grid-template-columns:1fr}}
+
+.word-overview + .pos-tabs{margin-top:24px}
+
+/* 数量变化只改变列数，每列字段及按钮预留区保持等宽。 */
+.word-overview{grid-template-columns:minmax(0,1fr) 244px}
+.spelling-row .spelling-columns>.optional-fields{display:grid;grid-template-columns:minmax(0,1fr) 22px;column-gap:8px;align-items:center}
+.spelling-row .spelling-columns>.optional-fields>.form-field{grid-column:1;min-width:0}
+@media(max-width:1100px){.word-overview{grid-template-columns:minmax(0,1fr) 230px}}
+@media(max-width:800px){.word-overview{grid-template-columns:1fr}.word-overview>.spelling-row{width:210px;max-width:100%;justify-self:end}.word-overview>.spelling-row:has(.two-columns){width:432px}}
+@media(max-width:440px){.word-overview>.spelling-row:has(.two-columns){width:210px}}
+
+/* 底部新增入口复用目录的带文字插入条，行内属性加号仍为圆形。 */
+.meaning-insert-actions{position:relative;min-height:24px;margin-top:0;gap:8px}
+.meaning-insert-actions:before{content:'';position:absolute;left:0;right:0;top:11px;height:3px;background:#1677ff;opacity:0}
+.meaning-insert-actions>.component-host{position:relative;z-index:1;opacity:0;pointer-events:none;background:#fff}
+.meaning-insert-actions .component-host .unified-add.ant-btn:has(> .ant-btn-icon + span){height:24px;padding:0 8px;border:1px solid #1677ff;border-radius:4px;background:#1677ff;color:#fff;gap:5px;font-size:12px}
+.meaning-insert-actions .component-host .unified-add.ant-btn:has(> .ant-btn-icon + span)>.ant-btn-icon{width:12px;height:12px;flex-basis:12px;border:0;border-radius:0;background:transparent;color:#fff}
+.meaning-insert-actions:hover:before,.meaning-insert-actions:focus-within:before,.meaning-insert-actions:hover>.component-host,.meaning-insert-actions:focus-within>.component-host{opacity:1;pointer-events:auto}
+@media(hover:none){.meaning-insert-actions:before,.meaning-insert-actions>.component-host{opacity:1;pointer-events:auto}}
+
+/* 拼写属性统一单列，增加填写空间，数量变化不影响宽度。 */
+.word-overview{grid-template-columns:minmax(0,1fr) 324px}
+@media(max-width:1100px){.word-overview{grid-template-columns:minmax(0,1fr) 320px}}
+@media(max-width:800px){.word-overview{grid-template-columns:1fr}.word-overview>.spelling-row{width:300px;max-width:100%}}
+
+/* 插入条覆盖各条释义的分隔线，不额外占一行。 */
+.meanings-pane>.sense-section{margin-bottom:0}
+.meanings-pane>.meaning-insert-actions{height:0;min-height:0;margin:0 0 12px;z-index:2}
+.meanings-pane>.meaning-insert-actions:after{content:'';position:absolute;left:0;right:0;top:-12px;height:24px}
+.meanings-pane>.meaning-insert-actions:before{top:-1.5px}
+.meanings-pane>.meaning-insert-actions>.component-host{transform:none}
+
+/* 复用目录删除资源，删除操作统一红色、紧凑无边框按钮。 */
+.meaning-delete-host.component-host .remove-module.ant-btn{width:30px;height:30px;padding:5px;border:1px solid transparent;border-radius:4px;color:#ff3030}
+.meaning-delete-host.component-host .remove-module.ant-btn:hover{background:#fff1f0;border-color:#ffe0dc}
+.shared-delete-icon{display:block;width:16px;height:16px;flex:none}
+/* 引用词块作为独立词条卡片展示，不占释义序号。 */
+.referenced-chunk-section{padding:12px 36px 12px 24px}
+.referenced-chunk-section>.meaning-controls{top:22px}
+.referenced-chunk-section>.remove-host{top:18px}
+.referenced-chunk-card{padding:14px 16px;border:1px solid #e0eaf5;border-radius:8px;background:#fff}
+.referenced-chunk-heading{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:10px}
+.referenced-chunk-word{font-size:22px;line-height:1.3;font-weight:700;font-style:normal;color:#142d4e;text-decoration:underline;text-decoration-color:#a4dcf7;text-decoration-thickness:3px;text-underline-offset:4px;overflow-wrap:anywhere}
+.referenced-chunk-label{font-size:12px;font-weight:400;line-height:20px;min-height:26px;color:#2c62bc;background:#eaf1ff;border:1px solid #d1dff8;border-radius:6px;padding:2px 9px}
+.referenced-chunk-meaning{font-size:16px;line-height:1.6;color:#203553}
+
+/* 词块是释义的子节点，卡片整体缩进，例句留在卡片内部。 */
+.sense-section>.referenced-chunk-section{margin:14px 0 0 16px;padding:0 30px 0 14px;border-left:2px solid #e0eaf5}
+.sense-section>.referenced-chunk-section>.remove-host{top:8px;right:0}
+.referenced-chunk-card .examples{margin-top:8px}
+
+.word-chunks-tab>button{display:flex;align-items:center;gap:8px;background:transparent;border:0;border-bottom:2px solid transparent;border-radius:0;padding:8px 6px 12px;color:#637b9c;font-size:16px;font-weight:600}
+.word-chunks-tab>button.active{color:#1677ff;border-bottom-color:#1677ff}
+.word-level-chunks>.referenced-chunk-section{margin-bottom:12px;padding:0 36px 0 0}
+
+/* 词性与词块分为左右两列，词性按规定顺序从左到右、从上到下显示。 */
+.pos-choice-menu .ant-dropdown-menu{display:grid;grid-template-columns:minmax(210px,2fr) minmax(90px,1fr);width:360px;max-width:calc(100vw - 32px);max-height:min(560px,70vh);overflow-y:auto;align-items:start}
+.pos-choice-menu .ant-dropdown-menu-item-group-list{display:flex;flex-direction:column;gap:2px;margin:0!important}
+.pos-choice-menu .ant-dropdown-menu-item-group-list .ant-dropdown-menu-item{margin:0;min-width:0;padding:6px 10px;white-space:nowrap}
+.pos-choice-menu .ant-dropdown-menu-item-group:first-child .ant-dropdown-menu-item-group-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.pos-choice-menu .ant-dropdown-menu-item-group + .ant-dropdown-menu-item-group{border-left:1px solid #edf1f7}
+
+/* 词性栏只跟随左侧信息高度，右侧属性不再决定其上间距。 */
+.word-summary>.pos-tabs{margin-top:24px;border-bottom:0;flex-wrap:wrap}
+.word-overview:has(.word-summary>.pos-tabs){border-bottom:1px solid var(--line);padding-bottom:0}
+
+.entry-id{font:12px/1.5 var(--font, sans-serif);color:#71839c;font-weight:400;user-select:text}.word-title-row>.entry-id{flex:0 0 auto;white-space:nowrap}.word-title-row:has(>.entry-id){flex-wrap:wrap}.meaning-id{display:block;flex-basis:100%;margin-bottom:4px}
+
+
+/* IDs accompany their own word/sense row without occupying the left controls. */
+.sense-section>.meaning-id{position:absolute;right:42px;top:7px;margin:0;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sense-section:has(>.meaning-id)>.meaning-fields{padding-right:142px}
+.word-title-row>.word-id,.chunk-title-row>.word-id{margin-left:8px;align-self:baseline;flex:0 0 auto;white-space:nowrap}
+
+/* Plain meaning numbers and optional word forms. */
+.sense-number{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;color:var(--muted,#607694);font-size:13px}
+.word-forms .inline-value:empty{display:inline-block;min-width:80px;min-height:24px}
+.word-forms .inline-value.empty-value{background:transparent;border-color:transparent}
+.meaning-dialect-group{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px}
+.meaning-dialect-group .optional-spelling:empty{display:inline-block;min-width:100px;min-height:24px}
+.meaning-dialect-group .optional-spelling.empty-value{background:transparent;border-color:transparent}
+
+.edit-actions .review-save{background:#e5484d;color:#fff;border-color:#e5484d}
+
+.edit-actions .mark-review{background:#fff;color:#e5484d;border:1px solid #e5484d}
+
+.position-levels{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.add-position-level{border:0;background:transparent;color:var(--blue);font:inherit;font-size:13px;padding:3px 0;cursor:pointer}
+
+.chunk-reference-dialog .chunk-picker{margin-top:16px}
+.chunk-reference-dialog .chunk-results{max-height:45vh;overflow-y:auto}
+.chunk-reference-dialog .chunk-results button{display:flex;justify-content:space-between;gap:12px;width:100%;text-align:left}
+.chunk-reference-dialog .chunk-results button:disabled{color:#a3adba;cursor:default}
+.chunk-reference-dialog footer{display:flex;justify-content:flex-end;margin-top:16px}
+.chunk-reference-dialog footer button{padding:6px 16px;border:1px solid #dce5f2;border-radius:6px}
+.chunk-search-empty{padding:20px 0;color:#657992;font-size:13px}
+
+.chunk-search-form{display:flex;gap:10px;align-items:stretch}
+.chunk-search-form input{flex:1;min-width:0}
+.chunk-search-form button{flex:none;background:#2463ed;color:#fff;border:0;border-radius:6px;padding:8px 20px;font:inherit;font-size:14px}
+
+/* 搜索结果仅在内部滚动，弹窗不随结果数量改变尺寸。 */
+.chunk-reference-dialog{box-sizing:border-box;width:720px;height:620px;max-width:calc(100vw - 32px);max-height:calc(100vh - 48px);overflow:hidden}
+.chunk-reference-dialog[open]{display:flex;flex-direction:column}
+.chunk-reference-dialog>.audio-chooser-heading,.chunk-reference-dialog>footer{flex:none}
+.chunk-reference-dialog .chunk-picker{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+.chunk-reference-dialog .chunk-search-form{flex:none}
+.chunk-reference-dialog .chunk-results{flex:1;min-height:0;max-height:none;overflow-y:auto;scrollbar-gutter:stable}
+
+/* Whole-chunk usages are separate from usages nested under a meaning. */
+.chunk-level-usages{margin:0 0 20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.chunk-level-usages .word-level-chunks{width:100%}
+
+/* Chunk tags follow the title on their own row, like word frequency tags. */
+.chunk-overview .chunk-title-row{display:flex}
+.chunk-tags-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:0}
+
+/* Disabled additions must remain visibly distinct from blue actions. */
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-disabled,
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-disabled:hover,
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item[aria-disabled="true"]{
+ color:#a3acb9!important;
+ background:transparent!important;
+ cursor:not-allowed;
+}
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item-disabled .ant-dropdown-menu-title-content,
+.present-options-menu .ant-dropdown-menu .ant-dropdown-menu-item-disabled .anticon{
+ color:inherit!important;
+}
+
+/* Consistent circled meaning numbers in entries and reference cards. */
+.sense-number{width:24px;min-width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:#eaf1ff;color:#647793;font-weight:400}
+.referenced-chunk-meanings{display:flex;flex-direction:column;gap:8px}
+.referenced-meaning-row{display:flex;align-items:baseline;gap:8px;min-width:0}
+.referenced-meaning-row>.sense-number{align-self:flex-start;margin-top:1px}
+.referenced-meaning-row>.referenced-chunk-meaning{flex:1;min-width:0;overflow-wrap:anywhere}
+
+/* Keep same-row editing controls aligned; multiple selections may wrap. */
+.board .meaning-fields .inline-value.empty-value{display:inline-flex;align-items:center;min-height:34px;box-sizing:border-box;padding:5px 8px;line-height:24px}
+.board .meaning-fields .inline-editor{min-height:34px;box-sizing:border-box;line-height:24px;padding:4px 8px}
+.board .meaning-fields .ant-select-selector{min-height:34px!important;box-sizing:border-box}
+.board .meaning-fields .usage-cluster{align-self:center}
+.meaning-chunk-pair .static-tag{cursor:default}
+
+/* Same-row controls: size the outer box, not an inline child. */
+.board .meaning-fields{--meaning-control-height:34px;--pending-text:#b96d0b}
+.board .meaning-fields .form-field.unfilled-card{padding:0!important}
+.board .meaning-fields .usage-cluster>.form-field{display:inline-flex;vertical-align:middle;align-items:center}
+.board .meaning-fields .usage-cluster>.form-field>.inline-value.empty-value,
+.board .meaning-fields .form-field>.inline-value.empty-value{display:inline-flex;align-items:center;box-sizing:border-box;min-height:var(--meaning-control-height);padding:5px 8px;line-height:24px;color:var(--pending-text)}
+.board .meaning-fields .relation-field{box-sizing:border-box;min-height:var(--meaning-control-height);align-items:stretch}
+.board .meaning-fields .relation-field>.inline-value,
+.board .meaning-fields .relation-field>.inline-value.empty-value{display:inline-flex;align-items:center;box-sizing:border-box;min-height:32px;line-height:22px;padding:5px 8px}
+.board .meaning-fields .relation-field>.inline-editor{min-height:32px;line-height:22px;padding:4px 7px}
+.board .meaning-fields .inline-value.empty-value,
+.board .meaning-fields .unfilled-card>.inline-value.empty-value{color:var(--pending-text)!important}
+.board .meaning-fields .inline-editor::placeholder,
+.board .meaning-fields .ant-select-selection-placeholder{color:var(--pending-text)!important;opacity:1}
+
+/* Reference picker: fixed shell, selectable results, explicit confirmation. */
+.chunk-reference-dialog{width:760px;height:620px;padding:0;border-radius:12px;background:#fff;box-shadow:0 20px 64px #14274433}
+.chunk-reference-dialog>.audio-chooser-heading{padding:22px 24px;border-bottom:1px solid #e4eaf3;font-size:18px}
+.chunk-reference-dialog>.audio-chooser-heading button{width:28px;height:28px;color:#65738b}
+.chunk-reference-dialog .chunk-picker{margin:0;padding:24px 24px 0;gap:16px}
+.chunk-reference-dialog .chunk-search-form input{height:40px;box-sizing:border-box;font:400 14px/22px var(--font);outline:none}
+.chunk-reference-dialog .chunk-search-form input:focus{border-color:#2463ed;box-shadow:0 0 0 2px #2463ed14}
+.chunk-reference-dialog .chunk-search-form button{height:40px}
+.chunk-reference-dialog .chunk-result-count{flex:none;font-size:13px;font-weight:600;color:#65738b}
+.chunk-reference-dialog .chunk-result-count:empty{display:none}
+.chunk-reference-dialog .chunk-results{padding-bottom:16px}
+.chunk-reference-dialog .chunk-results button{min-height:52px;align-items:center;justify-content:flex-start;padding:12px 16px;font-size:15px;line-height:24px;border-bottom:1px solid #e7edf5}
+.chunk-reference-dialog .chunk-results button:not(:disabled):hover{background:#f5f8ff}
+.chunk-reference-dialog .chunk-results button.is-selected{background:#eaf1ff}
+.chunk-reference-dialog .chunk-results button.is-selected:hover{background:#eaf1ff}
+.chunk-reference-dialog .chunk-radio{width:16px;height:16px;box-sizing:border-box;border:1.5px solid #94a1b5;border-radius:50%;flex:none;background:#fff}
+.chunk-reference-dialog .is-selected .chunk-radio{border:5px solid #2463ed}
+.chunk-reference-dialog .chunk-result-word{flex:1;min-width:0;overflow-wrap:anywhere}
+.chunk-reference-dialog mark{background:transparent;color:#d4380d;border-radius:0}
+.chunk-reference-dialog .chunk-results button:disabled{color:#a3acb9;background:#f5f6f8}
+.chunk-reference-dialog button:disabled mark{background:transparent}
+.chunk-reference-dialog button:disabled .chunk-radio{background:#f1f3f6;border-color:#cbd2dc}
+.chunk-reference-dialog .chunk-already-linked{font-size:13px}
+.chunk-reference-dialog footer{margin:0;padding:18px 24px;border-top:1px solid #e4eaf3;justify-content:space-between;align-items:center;gap:16px}
+.chunk-reference-dialog .chunk-selection-count{font-size:13px;color:#65738b}
+.chunk-reference-dialog .chunk-footer-actions{display:flex;gap:12px}
+.chunk-reference-dialog footer button{height:38px;padding:0 18px;font-size:14px}
+.chunk-reference-dialog [data-confirm-picker]{background:#2463ed;color:#fff;border-color:#2463ed}
+.chunk-reference-dialog [data-confirm-picker]:disabled{background:#e8edf5;border-color:#e8edf5;color:#a3acb9;cursor:default}
+
+/* Optional inflections keep a visible input area without required styling. */
+.board .word-forms .inline-value.empty-value{display:block;box-sizing:border-box;min-width:80px;min-height:32px;padding:4px 8px;background:#f0f5fc;border:1px solid #d6e2f2;border-radius:5px;cursor:text}
+.board .word-forms .inline-value.empty-value:focus-visible{outline:2px solid #91caff;outline-offset:2px}
+.board .read-only .word-forms .inline-value.empty-value,.read-only .board .word-forms .inline-value.empty-value{background:transparent;border-color:transparent;cursor:default}
+
+/* Verb transitivity uses the same typographic family as part of speech. */
+.board .meaning-fields .usage-cluster>[data-field="meanings-J"]>.inline-value{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:700}
+
+.chunk-reference-dialog .chunk-pagination{flex:none;display:flex;justify-content:center;align-items:center;gap:6px;padding:0 0 16px}
+.chunk-reference-dialog .chunk-pagination[hidden]{display:none}
+.chunk-reference-dialog .chunk-pagination button{min-width:30px;height:30px;padding:0 7px;border:1px solid #dce5f2;border-radius:5px;color:#536783;background:#fff;font-size:13px}
+.chunk-reference-dialog .chunk-pagination button[aria-current="page"]{background:#2463ed;border-color:#2463ed;color:#fff}
+.chunk-reference-dialog .page-gap{color:#8794a8;padding:0 3px}
+.chunk-reference-dialog .chunk-selection-count{min-width:0;overflow-wrap:anywhere}
+.chunk-reference-dialog .chunk-footer-actions{flex-shrink:0}
+
+.meaning-mode-toggle .meaning-mode-switch.ant-btn{width:100%;height:38px;background:#edf4ff;border:1px solid #bdd3fa;color:#2463ed;font-weight:600;box-shadow:none;justify-content:center}
+.meaning-mode-toggle .meaning-mode-switch.ant-btn:hover{background:#e3edff;border-color:#8cb5fa;color:#1854ce}
+.meaning-mode-toggle{padding:12px;border-bottom:1px solid #e4eaf3}
+
+/* Definition chunk references are compact single-line cards. */
+.board .meaning-fields .meaning-chunk-pair{display:inline-flex;align-items:center;flex-wrap:nowrap;gap:12px;max-width:100%;min-width:0;padding:6px 12px;border:1px solid #dce6f4;border-radius:7px;background:#f0f5fc;box-sizing:border-box;overflow-x:auto}
+.board .meaning-chunk-pair>.form-field{flex:0 0 auto;min-width:0}
+.board .meaning-chunk-pair .inline-value{white-space:nowrap;min-height:24px;line-height:24px;padding:0}
+.board .meaning-chunk-pair .chunk-english .inline-value{font-family:var(--font);font-size:16px;font-style:normal;font-weight:700;color:#203553;cursor:pointer}
+.board .meaning-chunk-pair .meaning-text .inline-value{font-size:14px;font-style:normal;font-weight:400;color:#536783;border-left:1px solid #d6e2f2;padding-left:12px}
+
+/* Optional empty forms use a clickable dash instead of an empty input box. */
+.board .word-forms .inline-value.empty-value{background:transparent;border:0;box-shadow:none;min-height:28px;padding:3px 0;color:#7b8ba1;cursor:text}
+
+/* Guidance label, file and playback share one visible container. */
+.board .word-guidance .guidance-module{max-width:100%;padding:0;background:#f5f8ff;border:1px solid #d6e2f2;border-radius:7px}
+.board .word-guidance .guidance-audio{gap:12px;padding:7px 10px;min-height:38px;box-sizing:border-box}
+.guidance-audio-label{flex:none;padding-right:12px;border-right:1px solid #d6e2f2;color:#657992;font-size:13px;line-height:22px}
+.board .word-guidance .guidance-audio-name{min-width:0;line-height:22px}
+.board .word-guidance .guidance-audio .play-button{flex:none}
+
+.board .meaning-chunk-pair[role="button"],.board .meaning-chunk-pair[role="button"] .inline-value{cursor:pointer}
+.board .meaning-chunk-pair[role="button"]:focus-visible{outline:2px solid #91caff;outline-offset:2px}
+
+.word-pronunciation-note{width:100%;max-width:680px}
+.word-pronunciation-note>.form-field{display:flex;flex-direction:row;align-items:baseline;gap:12px;padding:8px 12px;border:1px solid #dce6f4;border-radius:7px;background:#f5f8ff}
+.word-pronunciation-note .field-caption{flex:none;font-size:13px;color:#657992}
+.word-pronunciation-note .inline-value,.word-pronunciation-note .inline-editor{flex:1;min-width:0;font-size:14px}
+
+.word-chunks-tab>.remove-host{top:1px;right:-7px}
+
+.position-delete-dialog{width:420px;max-width:calc(100vw - 40px);padding:24px;border:1px solid #e1e9f8;border-radius:12px;background:#fff;color:var(--ink);box-shadow:0 20px 60px #152b4933}
+.position-delete-dialog::backdrop{background:#10274640}
+.position-delete-dialog h2{margin:0 0 16px;font-size:18px}
+.position-delete-dialog p{margin:0 0 28px;font-size:14px}
+.position-delete-actions{display:flex;justify-content:flex-end;gap:10px}
+.position-delete-actions button{padding:7px 16px;border:1px solid #dce4ee;border-radius:6px;background:#fff}
+.position-delete-actions [data-confirm-delete]{background:#d9363e;border-color:#d9363e;color:#fff}
