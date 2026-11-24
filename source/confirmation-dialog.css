@@ -1,0 +1,11 @@
+.dialog.confirmation-dialog{width:min(440px,calc(100vw - 32px));border-radius:12px;padding:0}
+.dialog.confirmation-dialog>header{padding:28px 28px 12px;border:0;background:#fff}
+.dialog.confirmation-dialog h2{font-size:18px;line-height:1.6;margin:0;overflow-wrap:anywhere}
+.dialog.confirmation-dialog>.dialog-body{padding:0 28px 12px;color:#60728d;line-height:1.7}
+.dialog.confirmation-dialog>.dialog-body p{margin:0 0 8px}
+.dialog.confirmation-dialog>footer{padding:16px 28px 24px;border:0;background:#fff;gap:12px}
+.dialog.confirmation-dialog>footer .btn{min-width:80px}
+.confirmation-modal .ant-modal-content{padding:28px;border-radius:12px}
+.confirmation-modal .ant-modal-title{font-size:18px;line-height:1.6}
+.confirmation-modal .ant-modal-footer{margin-top:24px}
+.confirmation-modal .dialog-body{color:#60728d;line-height:1.7}

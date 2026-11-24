@@ -1,0 +1,61 @@
+.vocabulary-editor-frame{position:fixed;inset:0;width:100vw;height:100dvh;border:0;background:#f5f7fa;z-index:10000}.vocabulary-catalog-tabs{margin-bottom:20px}.vocabulary-catalog-tabs button{display:flex;gap:8px;align-items:center}.vocabulary-catalog-tabs span{font-size:12px;color:#71829b}.vocabulary-catalog-list table{table-layout:fixed;width:100%}.vocabulary-catalog-list th,.vocabulary-catalog-list td{padding:16px 20px!important}.vocabulary-catalog-list th:first-child,.vocabulary-catalog-list td:first-child{width:110px;padding-left:28px!important}.vocabulary-catalog-list th:last-child,.vocabulary-catalog-list td:last-child{width:180px}.vocabulary-catalog-list th:nth-last-child(2){width:90px}.vocabulary-catalog-list td{overflow-wrap:anywhere}.vocabulary-catalog-list .linkbtn+.linkbtn{margin-left:14px}.catalog-empty{padding:20px 28px}.vocabulary-catalog-list .toolbar .input{width:100%}@media(max-width:700px){.vocabulary-catalog-list{overflow:auto}.vocabulary-catalog-list table{min-width:620px}}
+
+.vocabulary-catalog-list th:last-child,.vocabulary-catalog-list td:last-child{width:230px;white-space:nowrap}
+
+.vocabulary-catalog-list th:nth-last-child(2){width:130px}
+.bank-status-dot.vocab-partial{background:#e9ad51}
+.vocabulary-catalog-heading{justify-content:flex-start;gap:32px;flex-wrap:wrap}
+.vocabulary-catalog-heading .vocabulary-catalog-tabs{margin:0;border:0;align-self:center}
+.catalog-search-form{display:flex;align-items:center;max-width:520px;flex:1}
+.vocabulary-catalog-list .toolbar{justify-content:space-between}
+.catalog-search-form .input{border-radius:6px 0 0 6px;min-width:0}
+.catalog-search-form .btn{border-radius:0 6px 6px 0;white-space:nowrap;align-self:stretch}
+.btn.publish-action{background:#e53935;border-color:#e53935;color:#fff}
+.btn.publish-action:hover{background:#c62828;border-color:#c62828;color:#fff}
+.catalog-status-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.catalog-filter-button{border:0;background:none;color:#9ca3af;cursor:pointer;padding:4px;display:inline-flex}
+.catalog-filter-button.active{color:#1677ff}
+.catalog-status-panel{position:fixed;inset:auto;margin:0;width:280px;max-width:calc(100vw - 24px);padding:16px;border:1px solid #e1e8f1;border-radius:8px;background:#fff;color:#17304e;box-shadow:0 8px 24px #17304e24;font-weight:400}
+.catalog-status-panel form{display:grid;gap:12px}
+.catalog-status-panel label{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.catalog-status-panel select{min-width:130px}
+.catalog-filter-actions{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+
+.vocabulary-catalog-list th:nth-child(2){width:34%}
+.vocabulary-catalog-list th:nth-last-child(3){width:125px}
+.vocabulary-catalog-list th:nth-last-child(2){width:140px}
+.catalog-review-pending{color:#e5484d;font-weight:500}
+.catalog-review-filter{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.catalog-review-filter select{max-width:80px;border:1px solid #dce5ef;border-radius:4px;background:white;color:#526985;padding:4px}
+
+.catalog-mark-review{color:#e5484d;vertical-align:middle;display:inline-flex;align-items:center}
+.vocabulary-catalog-list th:last-child,.vocabulary-catalog-list td:last-child{width:260px}
+.vocabulary-catalog-list th:nth-child(2){width:auto}
+
+.catalog-status-panel{width:320px;z-index:10020;overflow:visible;box-sizing:border-box}
+.catalog-status-panel fieldset{border:0;padding:0;margin:0;min-width:0}
+.catalog-status-panel legend{font-size:13px;color:#526985;margin-bottom:8px}
+.catalog-status-choices{display:flex;gap:6px}
+.catalog-status-choices label{flex:1;position:relative;display:block;cursor:pointer}
+.catalog-status-choices input{position:absolute;opacity:0;width:1px;height:1px}
+.catalog-status-choices span{display:block;text-align:center;border:1px solid #dce5ef;border-radius:5px;padding:6px 4px;font-size:13px;white-space:nowrap}
+.catalog-status-choices input:checked+span{border-color:#1677ff;color:#1677ff;background:#eaf3ff}
+.catalog-status-choices input:focus-visible+span{outline:2px solid #1677ff;outline-offset:2px}
+.catalog-review-panel{width:320px}
+.catalog-status-panel .catalog-review-option{justify-content:flex-start;gap:8px;padding:7px 0;cursor:pointer}
+.catalog-review-option input{accent-color:#1677ff;width:16px;height:16px;margin:0;flex-shrink:0}
+
+.catalog-publication-panel{padding:24px 28px 28px;min-height:320px;box-sizing:border-box}
+.catalog-publication-panel .book-status-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 24px}
+.catalog-publication-panel h3{margin:0;font-size:16px;line-height:24px}
+.catalog-publication-panel .school-publication-scroll{margin-top:0;padding-top:4px;max-height:480px}
+.catalog-publication-panel>.muted{margin:0;padding:20px 0}
+@media(max-width:700px){.catalog-publication-panel{padding:20px}.catalog-publication-panel .book-status-heading{gap:12px}}
+
+.catalog-pagination{display:flex;justify-content:flex-end;align-items:center;gap:14px;flex-wrap:wrap;padding:18px 24px;border-top:1px solid #edf1f7;font-size:14px;color:#526680}
+.catalog-pagination label{display:flex;align-items:center;gap:8px}
+.catalog-pagination select{padding:6px 10px;border:1px solid #dce5f2;border-radius:6px;background:#fff;color:inherit}
+
+.catalog-publication-panel .publication-timeline-heading strong,
+.catalog-publication-panel .publication-timeline-heading strong time{color:#111;font-size:18px;font-weight:700;line-height:1.5}
+.catalog-publication-panel .catalog-publication-count{display:inline-flex;align-items:center;padding:2px 10px;border:1px solid #dce8f8;border-radius:999px;background:#edf5ff;color:#3066a8;font-size:12px;line-height:20px;margin-right:8px}

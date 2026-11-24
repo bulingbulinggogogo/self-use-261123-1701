@@ -1,0 +1,204 @@
+/* Card, fields and button adapted from 维克多教师端/prototype/styles.css. */
+#login .login-card {
+  position: relative;
+  width: min(100%, 520px);
+  min-height: 668px;
+  justify-self: center;
+  padding: 64px 54px 42px;
+  border: 1px solid #acd0ff;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 20px 56px rgba(44, 99, 163, .13);
+  backdrop-filter: blur(12px);
+}
+
+
+#login .login-field + .login-field {
+  margin-top: 28px;
+}
+
+#login .login-field > label {
+  display: inline-block;
+  margin: 0 0 10px 2px;
+  color: #173460;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+#login .login-input-wrap {
+  position: relative;
+  display: flex;
+  height: 62px;
+  align-items: center;
+  border: 1px solid #b8c9df;
+  border-radius: 12px;
+  background: #fff;
+  color: #9badc4;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+#login .login-input-wrap:focus-within {
+  border-color: #176bff;
+  box-shadow: 0 0 0 3px rgba(23, 107, 255, .13);
+}
+
+#login .login-input-wrap > [data-icon] {
+  display: grid;
+  width: 54px;
+  place-items: center;
+  flex: 0 0 54px;
+}
+
+#login .login-input-wrap svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+#login .login-input-wrap input {
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  padding: 0 12px 0 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #18375f;
+  font-size: 17px;
+}
+
+#login .login-input-wrap input::placeholder {
+  color: #a5b4c9;
+}
+
+#login .login-password-toggle {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  flex: 0 0 54px;
+  border: 0;
+  background: transparent;
+  color: #91a4bf;
+}
+
+#login .login-password-toggle:hover,
+#login .login-password-toggle:focus-visible {
+  color: #176bff;
+  outline: none;
+}
+
+
+#login .login-error {
+  min-height: 24px;
+  margin: 6px 2px 0;
+  color: #d92d20;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+
+#login .login-submit {
+  width: 100%;
+  height: 64px;
+  margin-top: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: #1268f3;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(18, 104, 243, .2);
+  font-size: 20px;
+  font-weight: 800;
+  transition: background .18s ease, transform .18s ease;
+}
+
+#login .login-submit:hover:not(:disabled),
+#login .login-submit:focus-visible {
+  background: #0759dd;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+#login .login-submit:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+
+
+#login{display:block;position:relative;isolation:isolate;min-height:700px;height:100vh;height:100svh;overflow:hidden;background:#e3f3ff;color:#082354}
+/* Fit image height without cropping its top or bottom; crop only horizontal overflow. */
+#login .login-page-background{position:absolute;top:0;bottom:auto;left:50%;right:auto;z-index:-1;width:auto;max-width:none;height:100%;transform:translateX(calc(-50% + 100px));object-fit:contain;object-position:center;pointer-events:none}
+#login .login-brand-lockup{position:absolute;top:9%;left:4%;display:flex;align-items:center;gap:22px;max-width:88%}
+#login .login-brand-lockup>img{width:clamp(64px,6.2vw,94px);height:auto;flex-shrink:0}
+#login .login-brand-lockup h1{font-size:clamp(25px,2.7vw,42px);line-height:1.3;font-weight:700;letter-spacing:0;white-space:nowrap}
+#login .login-brand-lockup p{font-size:clamp(13px,1.25vw,19px);line-height:1.6;color:#326294;margin-top:8px;letter-spacing:.12em}
+#login .login-form-wrap{position:absolute;top:50%;right:5%;transform:translateY(-50%);display:block;width:min(39%,520px);padding:0}
+#login .login-card{width:100%;min-height:0;margin:0;padding:48px 46px 24px}
+#login .login-input-wrap input{padding-left:18px;width:100%;box-shadow:none!important;border:0!important}
+#login .login-password-toggle:focus-visible{outline:2px solid #176bff;outline-offset:-4px;border-radius:10px}
+#login .login-submit:focus-visible{outline:3px solid #082354;outline-offset:3px}
+#login .login-error{margin-top:12px}
+@media(min-width:1600px){#login .login-form-wrap{right:8%}}
+@media(max-width:1000px) and (min-width:701px){#login .login-form-wrap{width:43%;right:4%}#login .login-card{padding:36px 28px 20px}#login .login-input-wrap{height:54px}#login .login-submit{height:56px}#login .login-brand-lockup{gap:14px}}
+@media(max-width:700px){#login{height:auto;min-height:100svh;padding:34px 22px 60px;overflow:hidden}#login .login-page-background{object-position:65% center;opacity:.4}#login .login-brand-lockup{position:relative;top:auto;left:auto;max-width:none;gap:12px;margin-bottom:46px}#login .login-brand-lockup>img{width:52px}#login .login-brand-lockup h1{font-size:clamp(18px,4.5vw,25px);white-space:normal}#login .login-brand-lockup p{font-size:11px;letter-spacing:0;margin-top:5px}#login .login-form-wrap{position:relative;top:auto;right:auto;transform:none;width:min(100%,440px);margin:0 auto}#login .login-card{padding:34px 26px 18px}#login .login-input-wrap{height:54px}#login .login-submit{height:56px;margin-top:28px}}
+@media(prefers-reduced-motion:reduce){#login .login-submit,#login .login-input-wrap{transition:none}#login .login-submit:hover{transform:none}}
+
+#login .login-card-header{margin-bottom:32px;text-align:center}
+#login .login-card-header h2{margin:0;color:#082354;font-size:30px;font-weight:700;line-height:1.3}
+@media(max-width:700px){#login .login-card-header{margin-bottom:26px}#login .login-card-header h2{font-size:26px}}
+
+/* Match the teacher portal brand lockup within its centered layout. */
+@media(min-width:821px){
+  #login{--brand-layout-width:min(1760px,calc(100% - 96px));--brand-column-width:calc((var(--brand-layout-width) - clamp(40px,6vw,104px)) * .54)}
+  #login .login-brand-lockup{top:calc(14% + 28.8px);left:calc((100% - var(--brand-layout-width)) / 2 + var(--brand-column-width) * .01);gap:28px;max-width:none}
+  #login .login-brand-lockup>img{width:clamp(104px,8vw,132px);height:clamp(104px,8vw,132px);object-fit:contain}
+  #login .login-brand-lockup h1{color:#092454;font-size:clamp(42px,3.9vw,64px);font-weight:800;letter-spacing:.02em;line-height:1.14}
+  #login .login-brand-lockup p{margin-top:16px;color:#224b82;font-size:clamp(20px,1.7vw,28px);letter-spacing:.22em;white-space:nowrap}
+}
+@media(min-width:821px) and (max-width:1120px){
+  #login{--brand-layout-width:min(960px,calc(100% - 56px));--brand-column-width:calc((var(--brand-layout-width) - 32px) * .45)}
+  #login .login-brand-lockup{align-items:flex-start;flex-direction:column;gap:16px}
+  #login .login-brand-lockup h1{font-size:40px}
+  #login .login-brand-lockup p{font-size:18px;letter-spacing:.12em}
+}
+@media(max-height:760px) and (min-width:821px){#login .login-brand-lockup{top:calc(14% + 14.4px)}}
+
+/* Keep the welcome heading at the same height as the teacher portal. */
+@media(min-width:821px){
+  #login .login-card{min-height:668px;padding:64px 54px 42px}
+  #login .login-card-header{margin-bottom:72px;text-align:center}
+  #login .login-card-header h2{font-size:40px;font-weight:800;line-height:1.2}
+}
+@media(max-height:760px) and (min-width:821px){
+  #login .login-card{min-height:0;padding:34px 48px 26px}
+  #login .login-card-header{margin-bottom:32px}
+  #login .login-card-header h2{font-size:34px}
+  #login .login-field + .login-field{margin-top:18px}
+  #login .login-input-wrap{height:56px}
+  #login .login-submit{height:58px;margin-top:24px}
+}
+
+/* Embedded DingTalk-style prototype login. */
+#login .login-card{padding:44px 40px 28px;text-align:center}
+#login .login-card-header{margin:0 0 42px}
+#login .login-dingtalk-mark{display:block;width:72px;height:72px;margin:0 auto 20px}
+#login #login-card-title{font-size:30px;line-height:1.4;margin:0;color:#17212b;font-weight:700}
+#login .login-qr-button{display:block;width:min(100%,280px);aspect-ratio:1;margin:0 auto;padding:12px;border:1px solid #dce1e7;border-radius:20px;background:#fff;cursor:pointer}
+#login .login-qr-button img,#login .login-qr-button>svg{display:block;width:100%;height:auto}
+#login .login-qr-button:focus-visible{outline:3px solid #1677ff;outline-offset:5px}
+#login .login-scan-caption{font-size:14px;color:#718096;margin:20px 0 0}
+#login .login-scan-footer{display:flex;justify-content:space-between;gap:12px;margin:28px auto 0;max-width:280px;color:#7b8490;font-size:13px}
+@media(max-width:700px){#login .login-card{padding:30px 24px 20px}#login .login-card-header{margin-bottom:28px}#login #login-card-title{font-size:26px}#login .login-dingtalk-mark{width:60px;height:60px}}
+
+#login .login-auto-option{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:#7b8490}
+#login .login-auto-option input{width:17px;height:17px;margin:0;accent-color:#0866ff;cursor:pointer}
+
+#login .login-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 40px;min-height:668px}
+#login .login-card-header{width:100%}
+#login .login-scan-footer{justify-content:center;width:100%}
+#login .login-error:empty{display:none}
+@media(max-width:700px),(max-height:760px){#login .login-card{min-height:0;padding:32px 24px}}

@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "antd": "5.29.3",
+    "esbuild": "0.25.12",
+    "quill": "^2.0.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "sortablejs": "^1.15.6"
+  },
+  "private": true,
+  "scripts": {
+    "build:ui": "esbuild ui/book-ui.jsx --bundle --minify --format=iife --target=es2020 --define:process.env.NODE_ENV=\"\\\"production\\\"\" --outfile=assets/book-ui.js",
+    "build:present": "esbuild examples/present-editor/components.jsx --bundle --minify --format=iife --target=es2020 --define:process.env.NODE_ENV='\"production\"' --outfile=examples/present-editor/components.js"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^6.2.4",
+    "jsdom": "26.1.0"
+  }
+}

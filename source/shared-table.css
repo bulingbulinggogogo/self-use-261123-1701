@@ -1,0 +1,38 @@
+/* Shared table and action tokens, based on the listening question bank. */
+:root{--action-blue:#1677ff;--action-blue-hover:#4096ff;--action-red:#dc4446;--action-red-hover:#e76b6c;--table-heading-bg:#f3f7fc;--table-heading-text:#132b45;--table-body-text:#657890;--table-rule:#e8edf3;}
+body table{font-family:var(--font);font-size:13px;line-height:1.6;border-spacing:0;}
+body table thead>tr>th,body .ant-table-wrapper .ant-table-thead>tr>th{font-size:13px!important;font-weight:500!important;line-height:1.6!important;color:var(--table-heading-text)!important;background:var(--table-heading-bg)!important;padding:10px 8px!important;border-top:0;border-bottom:1px solid var(--table-rule)!important;}
+body table tbody>tr>td,body .ant-table-wrapper .ant-table-tbody>tr>td{font-size:13px!important;font-weight:400;line-height:1.6;color:var(--table-body-text);padding:10px 8px!important;border-bottom-color:var(--table-rule);}
+body table thead>tr>th:first-child,body table tbody>tr>td:first-child{padding-left:12px!important;}
+body table .linkbtn,body table .ant-btn-link{font-size:13px!important;font-weight:400!important;line-height:1.6;padding-inline:4px!important;white-space:nowrap;}
+body .linkbtn,body .ant-btn-link{color:var(--action-blue)!important;}
+body .linkbtn:hover,body .ant-btn-link:not(:disabled):hover{color:var(--action-blue-hover)!important;}
+body .resource-danger,body .linkbtn.resource-danger,body .linkbtn.danger,body .ant-btn-link.ant-btn-dangerous,body .basket-delete,body .directory-delete{color:var(--action-red)!important;}
+body .linkbtn.resource-danger:hover,body .linkbtn.danger:hover,body .ant-btn-link.ant-btn-dangerous:not(:disabled):hover{color:var(--action-red-hover)!important;}
+body .btn.danger{background:var(--action-red);border-color:var(--action-red);color:white;}
+body .btn.resource-danger:not(.danger){color:var(--action-red)!important;}
+body .linkbtn:disabled,body .ant-btn-link:disabled{color:#b8c2cf!important;opacity:1;}
+body .ant-table-wrapper .ant-table{font-family:var(--font);font-size:13px;color:var(--table-body-text);}
+/* Editable sentence grids keep their fields and selection layouts intact. */
+body table input,body table textarea,body table select{font-size:13px;}
+
+.book-products-table th:last-child,.book-products-table td:last-child{min-width:220px;white-space:nowrap;}
+
+/* Listening resources share a third-level navigation group. */
+.nav .listening-nav-pages{margin-left:12px;padding-left:8px;gap:2px}
+.nav .listening-nav-pages button{padding:9px 10px}
+
+body .linkbtn.resource-danger:disabled,body .linkbtn.resource-danger:disabled:hover{color:#b8c2cf!important;cursor:not-allowed;}
+
+/* Listening vocabulary list: balanced columns and comfortable edge spacing. */
+body .listening-vocabulary-list table{table-layout:fixed;min-width:760px}
+body .listening-vocabulary-list table thead>tr>th,
+body .listening-vocabulary-list table tbody>tr>td{padding:14px 16px!important;vertical-align:middle}
+body .listening-vocabulary-list table tr>:first-child{width:14%;padding-left:28px!important}
+body .listening-vocabulary-list table tr>:nth-child(2){width:34%;overflow-wrap:anywhere}
+body .listening-vocabulary-list table tr>:nth-child(3){width:12%;text-align:center}
+body .listening-vocabulary-list table tr>:nth-child(4){width:14%;text-align:center}
+body .listening-vocabulary-list table tr>:nth-child(5){width:10%;text-align:center}
+body .listening-vocabulary-list table tr>:nth-child(6){width:16%;padding-right:28px!important;text-align:left;white-space:nowrap!important}
+body .listening-vocabulary-list table td:last-child .linkbtn{padding-inline:0!important}
+body .listening-vocabulary-list table td:last-child .linkbtn+.linkbtn{margin-left:16px}
