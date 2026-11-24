@@ -1,0 +1,471 @@
+[
+  {
+    "path": "assets/images/login-manuscripts-wide.png",
+    "purpose": "登录背景/品牌标志/词条编辑共享操作图标",
+    "required": true,
+    "bytes": 1485929,
+    "sha256": "b726a8a550a592173b6c363078dc50d40a00d4c813ac27430cb00461d0847c83"
+  },
+  {
+    "path": "assets/images/victor-company-logo.png",
+    "purpose": "登录背景/品牌标志/词条编辑共享操作图标",
+    "required": true,
+    "bytes": 94491,
+    "sha256": "2bfa4502316cba6fd16d36a4f6249bb315dacaf61f4295e97a8b415978e82a45"
+  },
+  {
+    "path": "assets/directory-icons/directory-trash.svg",
+    "purpose": "登录背景/品牌标志/词条编辑共享操作图标",
+    "required": true,
+    "bytes": 222,
+    "sha256": "4c5f534f5be66c6564e6be9a77531688e06cb50ab593a74436d57681bf931122"
+  },
+  {
+    "path": "assets/directory-icons/EditOutlined.svg",
+    "purpose": "登录背景/品牌标志/词条编辑共享操作图标",
+    "required": true,
+    "bytes": 521,
+    "sha256": "70319b25ee0571127a9453e6ad008eac293e43255062247cf2e929bea2bce205"
+  },
+  {
+    "path": "examples/present-editor/index.html",
+    "purpose": "原始入口及完整页面结构",
+    "required": true,
+    "bytes": 2816193,
+    "sha256": "60927ca1d3d528f94cfc541530c4b9263c47f82aaf652c0453e8230fdfa578fa"
+  },
+  {
+    "path": "examples/present-editor/editor.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 59955,
+    "sha256": "27bac99456ebbbaa32c8271830b40cafbfd332566c298020a87f3331bc3b28de"
+  },
+  {
+    "path": "examples/present-editor/data.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 137064,
+    "sha256": "dbd36104f4c562f137f7539b51ca0f0c099e2c1b747f1d530865b3de355c13f6"
+  },
+  {
+    "path": "examples/present-editor/record-data.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 10392,
+    "sha256": "9747fd76f0d47a16365ef50d36d70e84892ebc40f21b1222f1dd166e99f89652"
+  },
+  {
+    "path": "vocabulary-catalog-data.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 90124,
+    "sha256": "ae5b3afa8c968e4151cbd26506c0ea2dbc64a9e5636058ca12f94e5a1a2c262b"
+  },
+  {
+    "path": "examples/present-editor/catalog-entry.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 1948,
+    "sha256": "2dcfdc57f4e73f086b9fb2040295bbf913977f741eace005ac8fb6b8a2d79a35"
+  },
+  {
+    "path": "examples/present-editor/components.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 651755,
+    "sha256": "85935b24fbe3d9918c3b19be1666f89fe72c50127da1c0da8d3f98df42a6401d"
+  },
+  {
+    "path": "examples/present-editor/editor.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 62681,
+    "sha256": "4ec32af9dc56299cd3dc2222a5e8ee1869f63dd69d74dbf5398987f801b2973d"
+  },
+  {
+    "path": "index.html",
+    "purpose": "原始入口及完整页面结构",
+    "required": true,
+    "bytes": 139920,
+    "sha256": "6c045336c38791852275a668ad15f3e9d7a8f240c63e89fd47b420a0f01618c5"
+  },
+  {
+    "path": "listening-create.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 219859,
+    "sha256": "715b6f76d5e98cf550925c167c68e3814326c6f01319392ddcbeadd0b07d139a"
+  },
+  {
+    "path": "login-page.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 9026,
+    "sha256": "cba54da99faf5ed4d759cd2c36bda27c5a61f11aa940fdd4a843c0a01f6c894f"
+  },
+  {
+    "path": "shared-table.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 3697,
+    "sha256": "7dd77679bdaabc1cd32ba99197e900981f1976de43944058588509f184362f85"
+  },
+  {
+    "path": "assets/quill.snow.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 24606,
+    "sha256": "1c7948cd13aa92fac6390319bc1e5e461823da171519d3a768db56164f871636"
+  },
+  {
+    "path": "interactive-teaching.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 9082,
+    "sha256": "ccaf65dedc89578529e3735e738db7192abfd6ecccd0f39c8e9a1e892976b037"
+  },
+  {
+    "path": "vocabulary-catalog.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 5719,
+    "sha256": "0b9771556283f7ba4d5755a1563896a7f8086035f6e103c98e13f75821fc6694"
+  },
+  {
+    "path": "confirmation-dialog.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 833,
+    "sha256": "fb1bf9069e595fba3fc9cb946074f4a77d6fd929d12687c1f7d68a1d3f398acd"
+  },
+  {
+    "path": "material-center.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 7481,
+    "sha256": "945107c11c3d4d426eaa2eaa3b0999e0ddb1ff5979270a345cc1a7f71ff6a73a"
+  },
+  {
+    "path": "sidebar-brand.css",
+    "purpose": "页面共享样式",
+    "required": true,
+    "bytes": 311,
+    "sha256": "0d3b712bc8012917ef9dd036c720c4f090839cbf5fd5f2e978f042afc4ec6546"
+  },
+  {
+    "path": "assets/book-ui.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 1212305,
+    "sha256": "a2019115d549cdd495e0ad495bd9a90be9b92969a649d0fa7ba1dd97256cc864"
+  },
+  {
+    "path": "book-690.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 2740821,
+    "sha256": "59ad8cc7bd1eafbc990e445880d65bd5971834df5d72de5df42b2750959f82cc"
+  },
+  {
+    "path": "workspace.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 36222,
+    "sha256": "9dc0d9e33147d8da0782b527495cc74c3ece49ece89ae359ab418add5c71d3db"
+  },
+  {
+    "path": "system-versions.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 6234,
+    "sha256": "12c5f3be53f679eb9c3e1afccc0a4123e5ece944a09158078a89592a32439664"
+  },
+  {
+    "path": "book-content.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 7025,
+    "sha256": "49a8fe82d021a5a6c5e9637fb0705bfb4aef886c3e2b2b2e1ab059ad8b9796bc"
+  },
+  {
+    "path": "book-directory.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 41207,
+    "sha256": "ee1098ebb93f1f40cb994ffe1cc1fbc97c6ce157c9e545809363e766f0d292c4"
+  },
+  {
+    "path": "book-info.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 15184,
+    "sha256": "d1b8ca735f826c2f423bc69189cf2f873e291b13d1359b0a65b518711e513613"
+  },
+  {
+    "path": "suite-editor.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 23430,
+    "sha256": "6b0ced6500d015b0ef1b9aa33efcd493327269fa4dc9890e11d8b64d786899cd"
+  },
+  {
+    "path": "recording-audio.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 14786,
+    "sha256": "8059a8a33a4c40a051745723c5a7f7ef4f4adbeb8dda96b00b3e2625f6f7b27c"
+  },
+  {
+    "path": "book-blocks.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 13687,
+    "sha256": "e4fe99dd3521e8be80e9baf5a6d4f5a5b9ff2a57811c1cb48b2e3f0db201d385"
+  },
+  {
+    "path": "gaokao-example.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 63493,
+    "sha256": "9b5c6296747516e2b593d2165fbb290275cb35f969cd12f5fd72262c5c91447a"
+  },
+  {
+    "path": "listening-revisions.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 10241,
+    "sha256": "200d755c8132dee58f77952ff4acbd6090dab78347238d46f184f7fb3bed3d20"
+  },
+  {
+    "path": "listening-bank.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 50109,
+    "sha256": "92d5e55cd89aae8b5ee58f6aa6cc68da413f3644e89bec51562f58750bf6d1a8"
+  },
+  {
+    "path": "listening-demo.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 127782,
+    "sha256": "01efeeedbfc80cde1f536c05c9c8f9fa65349e56f65fadee76b2fed02111ee98"
+  },
+  {
+    "path": "listening-workpage.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 10294,
+    "sha256": "09adaebd270f220aac675884f364a5006136c2a4fadea269f255faef34e20d24"
+  },
+  {
+    "path": "listening-edit.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 51940,
+    "sha256": "06de740b9dfec3bc7cbb4d66119e21c4b17152be61e5fa14d550e38bd5489f59"
+  },
+  {
+    "path": "listening-editor-shared.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 7710,
+    "sha256": "20bcb383ab0542f4321d5953c2e6275e494ed9344f3c54959445ea56fe8b5e61"
+  },
+  {
+    "path": "listening-create.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 107679,
+    "sha256": "98021db015776d8cbbc3d7c27e56476e36d62292756e522cabec1ec019b348c4"
+  },
+  {
+    "path": "book-686-example.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 73119,
+    "sha256": "a293024643026a1dcbb0f90a59e8db7e2a723a332a38bec8ab63bacc57f29fc2"
+  },
+  {
+    "path": "business-ids.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 4520,
+    "sha256": "f6299640e719f46a20b4995b6964107101d4a1a0b10fd53e3be401f93b80c423"
+  },
+  {
+    "path": "teaching-library.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 98525,
+    "sha256": "391dd06461beaa4c47a830ee8a4a0074342de98812c1e33a4bb576d28f71b2fa"
+  },
+  {
+    "path": "directory-content.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 45664,
+    "sha256": "f2c22fead0f75ff93603f67485abe34bcf1de36192dccdfcd6b765821882aa5e"
+  },
+  {
+    "path": "school-book-builder.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 8165,
+    "sha256": "22b6bd8ec3dc13f2e6bb7933238d9fdbc21f1923095cbfeba2f373bce1c45dcc"
+  },
+  {
+    "path": "listening-assembly.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 21627,
+    "sha256": "cafe95ddc0988df14e220dc32459fe66adfda9e663d563e166c6275aa2b39582"
+  },
+  {
+    "path": "book-workflow.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 30783,
+    "sha256": "9230226c7b48ccfeb6c9ea2ef38f815034d0598c18366e9992e76eb5ba853fb3"
+  },
+  {
+    "path": "paper-listening.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 8646,
+    "sha256": "07cc53046fc6e505c98348540199177d993b88e49c236fefb477b3e89e6ec496"
+  },
+  {
+    "path": "vocabulary-seed.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 1738850,
+    "sha256": "9279fd7e186d70122b95fc51b86519a07a5b11ef4cfe3ebc86a981642907287f"
+  },
+  {
+    "path": "vocabulary-model.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 19409,
+    "sha256": "e9100d13c6150217a01a8694754b9748584831eba34943277c3487ac97157dd0"
+  },
+  {
+    "path": "vocabulary-catalog.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 34013,
+    "sha256": "4c4f2e6ab9c9ba3586d27e25362a91f2d2c590e0227167c2130014d388a27658"
+  },
+  {
+    "path": "analysis-support.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 35685,
+    "sha256": "f46a0c1d3c7a47b6e20c3c4dbb24d84aae9dadd25a153412b50bf41851d78139"
+  },
+  {
+    "path": "analysis-batch-import.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 10460,
+    "sha256": "5d6e65807dc84fd42543e17a9126c13d8f926b6e2f3b50d746b205be917cc792"
+  },
+  {
+    "path": "interactive-teaching.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 24519,
+    "sha256": "8a87c61fcb9cfc3c7621b9236838cd05a02aa9044bd85a798b9a1950ed29adb4"
+  },
+  {
+    "path": "knowledge-editor.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 16314,
+    "sha256": "fc1beb6f1427f224a03f116dbdb9974bbd54bb2185ffbe422ae48492a0ea9d9b"
+  },
+  {
+    "path": "book-state-demo.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 13968,
+    "sha256": "0a4a202d5a6f154b1158c9be79a642e0e38c53336bcd028ac232dfc6d3c357c4"
+  },
+  {
+    "path": "sidebar-availability.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 2509,
+    "sha256": "9eaf307b9a5dcee1452d029d6898ed93dc3f2c2c9639e1faab09def8f7309395"
+  },
+  {
+    "path": "material-center.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 30166,
+    "sha256": "bed0621e46bd6f847a92fe9c8910ea52bde08aba7839995d2ebef680eb10b299"
+  },
+  {
+    "path": "editor-consistency.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 9979,
+    "sha256": "f1234ab79323525b8e787b4eb61ddc2d945d23f15449548b118b1a207f0c5259"
+  },
+  {
+    "path": "directory-edit-mode.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 3913,
+    "sha256": "57f19c48af76aa2a3faa7ab9ff15669c33e2249dc9ea441973ce4684899ae415"
+  },
+  {
+    "path": "gaokao-book.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 2157,
+    "sha256": "b4edf10d218c0d5001cc02af97416021ef0849c9eb3423b06633a163e046bde2"
+  },
+  {
+    "path": "public-id-repair.js",
+    "purpose": "词库/账号及原页面启动所需共享经典脚本",
+    "required": true,
+    "bytes": 1905,
+    "sha256": "2ffe12dbe88b7f1368ea4bd1762e08d9a65dc4ccddc72b69ea380170d762c6de"
+  },
+  {
+    "path": "ui/book-ui.jsx",
+    "purpose": "开发者重建已内嵌 UI bundle 的对应源码/依赖锁定",
+    "required": true,
+    "bytes": 38729,
+    "sha256": "dfc7b77cb074fe6117e83def19d95e98eeb62c21c421440d754e50f7c38ec649"
+  },
+  {
+    "path": "examples/present-editor/components.jsx",
+    "purpose": "开发者重建已内嵌 UI bundle 的对应源码/依赖锁定",
+    "required": true,
+    "bytes": 6920,
+    "sha256": "1163c35bf750da6d7ce040f2e1ace4cfd043c279798076aa22ea91d048b41924"
+  },
+  {
+    "path": "package.json",
+    "purpose": "开发者重建已内嵌 UI bundle 的对应源码/依赖锁定",
+    "required": true,
+    "bytes": 682,
+    "sha256": "67c11174b7d861f1864004ddb8a15373692b7d9331b81c90fb4dcd62f8bca6bf"
+  },
+  {
+    "path": "package-lock.json",
+    "purpose": "开发者重建已内嵌 UI bundle 的对应源码/依赖锁定",
+    "required": true,
+    "bytes": 73437,
+    "sha256": "4276a4e7b6514959ea15ab801b5c7abb081d72808293a6ca9be7c1ed7f26068e"
+  },
+  {
+    "path": "app-storage.js",
+    "purpose": "原项目存储启动源码；运行副本替换为独立内存启动",
+    "required": true,
+    "bytes": 3650,
+    "sha256": "7ba2e33b056878c26f13ef1ee83d4aa92859c6bdfb99ef2378ad81b15ad2d315"
+  }
+]
